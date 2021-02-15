@@ -1,6 +1,6 @@
-## "Configure AWS Credentials" Action For GitHub Actions
+## RunX Deploy
 
-Configure AWS credential and region environment variables for use in other GitHub Actions.  The environment variables will be detected by both the AWS SDKs and the AWS CLI to determine the credentials and region to use for AWS API calls.
+Deploy your docker container using runx.
 
 **Table of Contents**
 
