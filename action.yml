@@ -18,7 +18,7 @@ runs:
       shell: bash    
       run: |
         rm -rf .terraform*
-        VERSION=0.7.1 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
+        VERSION=0.9 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
         if [ -z "$TAG" ]
         then
           ~/.opta/opta push $IMAGE --env $RUNX_ENV
