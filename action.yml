@@ -10,6 +10,10 @@ inputs:
   tag:
     description: 'The tag associated with this image. Defaults to the tag on the "image" input field'
     required: false
+  conf:
+    description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
+    required: false
+
 
 runs:
   using: "composite"
@@ -19,14 +23,16 @@ runs:
       run: |
         rm -rf .terraform*
         VERSION=0.9 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
+        CONF=${CONF:-'opta.yml'}
         if [ -z "$TAG" ]
         then
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --conf $CONF
         else
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --conf $CONF
         fi
         bash -c "yes || true" | ~/.opta/opta apply --var tag=$TAG --env $RUNX_ENV
       env:
         RUNX_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
         TAG: ${{ inputs.tag }}
+        CONF: ${{ inputs.conf }}
