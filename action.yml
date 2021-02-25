@@ -10,7 +10,7 @@ inputs:
   tag:
     description: 'The tag associated with this image. Defaults to the tag on the "image" input field'
     required: false
-  conf:
+  config:
     description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
     required: false
     default: 'opta.yml'
@@ -35,4 +35,4 @@ runs:
         RUNX_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
         TAG: ${{ inputs.tag }}
-        CONF: ${{ inputs.conf }}
+        CONF: ${{ inputs.confic }}
