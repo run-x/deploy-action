@@ -26,11 +26,11 @@ runs:
         VERSION=0.9 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
         if [ -z "$TAG" ]
         then
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --conf $CONF
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --config $CONF
         else
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --conf $CONF
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --config $CONF
         fi
-        bash -c "yes || true" | ~/.opta/opta apply --var tag=$TAG --env $RUNX_ENV
+        bash -c "yes || true" | ~/.opta/opta apply --var tag=$TAG --env $RUNX_ENV --config $CONF
       env:
         RUNX_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
