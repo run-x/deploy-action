@@ -10,6 +10,11 @@ inputs:
   tag:
     description: 'The tag associated with this image. Defaults to the tag on the "image" input field'
     required: false
+  config:
+    description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
+    required: false
+    default: 'opta.yml'
+
 
 runs:
   using: "composite"
@@ -21,12 +26,13 @@ runs:
         VERSION=0.9 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
         if [ -z "$TAG" ]
         then
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --config $CONFIG
         else
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG
+          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --config $CONFIG
         fi
-        bash -c "yes || true" | ~/.opta/opta apply --var tag=$TAG --env $RUNX_ENV
+        bash -c "yes || true" | ~/.opta/opta apply --var tag=$TAG --env $RUNX_ENV --config $CONFIG
       env:
         RUNX_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
         TAG: ${{ inputs.tag }}
+        CONFIG: ${{ inputs.config }}
