@@ -30,7 +30,7 @@ runs:
         else
           ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --config $CONFIG
         fi
-        bash -c "yes || true" | ~/.opta/opta apply --image-tag $TAG --env $RUNX_ENV --config $CONFIG
+        bash -c "yes yes || true" | ~/.opta/opta apply --image-tag $TAG --env $RUNX_ENV --config $CONFIG
       env:
         RUNX_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
