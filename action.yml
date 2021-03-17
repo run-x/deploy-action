@@ -23,16 +23,15 @@ runs:
       shell: bash    
       run: |
         rm -rf .terraform*
-        VERSION=0.9 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
+        VERSION=0.11.6 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
         if [ -z "$TAG" ]
         then
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --config $CONFIG
+          bash -c "yes yes" || ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG
         else
-          ~/.opta/opta push $IMAGE --env $RUNX_ENV --tag $TAG --config $CONFIG
+          bash -c "yes yes" || ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --tag $TAG
         fi
-        bash -c "yes yes || true" | ~/.opta/opta apply --image-tag $TAG --env $RUNX_ENV --config $CONFIG
       env:
-        RUNX_ENV: ${{ inputs.env }}
+        OPTA_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
         TAG: ${{ inputs.tag }}
         CONFIG: ${{ inputs.config }}
