@@ -26,9 +26,9 @@ runs:
         VERSION=0.11.8 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
         if [ -z "$TAG" ]
         then
-          bash -c "yes yes" | ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG
+          ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --auto-approve
         else
-          bash -c "yes yes" | ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --tag $TAG
+          ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --tag $TAG --auto-approve
         fi
       env:
         OPTA_ENV: ${{ inputs.env }}
