@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+jobs:
+  test-deploy-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      # This test cannot be run concurrently to avoid the race condition of the triggered
+      # build being queued multiple times. In that case, we won't know which runxc build
+      # was triggered by which deploy-action build.
+      - name: Limit concurrency to 1.
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ALL_GITHUB_TOKEN }}
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Checkout runxc
+        uses: actions/checkout@v2
+        with:
+          repository: "run-x/runxc"
+          path: "runxc"
+          ref: kjin/deploy-action-create-and-destroy
+          ssh-key: ${{ secrets.RUNXC_SSH_KEY }}
+      # This roundabout method of triggering the actual test in the runxc repo is necessary
+      # since we don't want to share AWS creds with the public repo.
+      # After triggering the workflow in runxc, this step will wait for it to complete and
+      # also fail if the workflow fails too.
+      - name: Create and destroy test service with deploy-action.
+        run: |
+          ./runxc/scripts/dispatch_workflow.sh create-and-destroy-w-github-action.yml
+        env:
+          github_token: ${{ secrets.RUNX_GITHUB_ACCESS_TOKEN }}
