@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+jobs:
+  test-deploy-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Checkout runxc
+        uses: actions/checkout@v2
+        with:
+          repository: "run-x/runxc"
+          path: "runxc"
+          ref: kjin/deploy-action-create-and-destroy
+          ssh-key: ${{ secrets.RUNXC_SSH_KEY }}
+      - name: Create and destroy test service with deploy-action.
+        run: |
+          ./runxc/scripts/dispatch_workflow.sh create-and-destroy-w-github-action.yml
+        env:
+          github_token: ${{ secrets.RUNX_GITHUB_ACCESS_TOKEN }}
