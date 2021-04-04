@@ -26,7 +26,7 @@ jobs:
         with:
           repository: "run-x/runxc"
           path: "runxc"
-          ref: kjin/deploy-action-create-and-destroy
+          ref: main
           ssh-key: ${{ secrets.RUNXC_SSH_KEY }}
       # This roundabout method of triggering the actual test in the runxc repo is necessary
       # since we don't want to share AWS creds with the public repo.
