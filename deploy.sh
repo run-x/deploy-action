@@ -2,8 +2,6 @@
 
 set -eu
 
-rm -rf .terraform*
-
 script_dir=$(dirname "${BASH_SOURCE[0]}")
 VERSION=$(cat "${script_dir}/VERSION") /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
 
