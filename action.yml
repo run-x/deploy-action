@@ -19,6 +19,7 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v2
     - name: Update deployment
       shell: bash
       run: ./deploy.sh
