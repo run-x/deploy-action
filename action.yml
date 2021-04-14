@@ -22,7 +22,7 @@ runs:
     - name: Update deployment
       shell: bash
       run: |
-        VERSION=0.11.10 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
+        VERSION=0.11.15 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
 
         if [ -z "$TAG" ]; then
           ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --auto-approve
