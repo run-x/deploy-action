@@ -32,6 +32,6 @@ jobs:
       # also fail if the workflow fails too.
       - name: Create and destroy test service with deploy-action.
         run: |
-          ./runxc/scripts/dispatch_workflow.sh create-and-destroy-w-github-action.yml
+          ./runxc/scripts/dispatch_workflow.sh runxc create-and-destroy-w-github-action.yml
         env:
           github_token: ${{ secrets.RUNX_GITHUB_ACCESS_TOKEN }}
