@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # This test cannot be run concurrently to avoid the race condition of the triggered
-      # build being queued multiple times. In that case, we won't know which runxc build
+      # build being queued multiple times. In that case, we won't know which opta build
       # was triggered by which deploy-action build.
       - name: Limit concurrency to 1.
         uses: softprops/turnstyle@v1
@@ -22,8 +22,8 @@ jobs:
       - name: Checkout runxc
         uses: actions/checkout@v2
         with:
-          repository: "run-x/runxc"
-          path: "runxc"
+          repository: "run-x/opta"
+          path: "opta"
           ref: main
           ssh-key: ${{ secrets.RUNXC_SSH_KEY }}
       # This roundabout method of triggering the actual test in the runxc repo is necessary
