@@ -14,6 +14,10 @@ inputs:
     description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
     required: false
     default: 'opta.yml'
+    required: false
+  version:
+    description: 'The version of opta that you are using'
+    required: true
 
 
 runs:
@@ -22,7 +26,7 @@ runs:
     - name: Update deployment
       shell: bash
       run: |
-        VERSION=0.11.18 /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
+        VERSION=$VERSION /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
 
         if [ -z "$TAG" ]; then
           ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --auto-approve
