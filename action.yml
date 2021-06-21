@@ -14,7 +14,6 @@ inputs:
     description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
     required: false
     default: 'opta.yml'
-    required: false
   version:
     description: 'The version of opta that you are using'
     required: true
