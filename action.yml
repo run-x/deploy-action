@@ -1,11 +1,11 @@
-name: 'runx'
-description: 'Magical Infrastructure and Deploys'
+name: "runx"
+description: "Magical Infrastructure and Deploys"
 inputs:
   image:
-    description: 'The local image being deployed, provided in the form <IMAGE_NAME>:<IMAGE_TAG>'
+    description: "The local image being deployed, provided in the form <IMAGE_NAME>:<IMAGE_TAG>"
     required: true
   env:
-    description: 'The name of your environment as defined in your runx config files'
+    description: "The name of your environment as defined in your runx config files"
     required: true
   tag:
     description: 'The tag associated with this image. Defaults to the tag on the "image" input field'
@@ -13,11 +13,10 @@ inputs:
   config:
     description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
     required: false
-    default: 'opta.yml'
+    default: "opta.yml"
   version:
-    description: 'The version of opta that you are using'
+    description: "The version of opta that you are using"
     required: true
-
 
 runs:
   using: "composite"
@@ -37,3 +36,4 @@ runs:
         IMAGE: ${{ inputs.image }}
         TAG: ${{ inputs.tag }}
         CONFIG: ${{ inputs.config }}
+        VERSION: ${{ inputs.version }}
