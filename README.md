@@ -28,8 +28,8 @@ See [action.yml](action.yml) for the full documentation for this action's inputs
 
 ## Authentication
 In order for the deploy action to execute properly, you will need to use other github actions for authentication.
-1. [`webfactory/ssh-agent`](https://github.com/run-x/webfactory/ssh-agent), to allow access to other repositories' opta configuration files. Note that you only need to use this if you have opta.yml files in other repos.
-2. [`aws-actions/configure-aws-credentials`](https://github.com/run-x/aws-actions/configure-aws-credentials), to allow push and deploy to AWS. Make sure that the API key associated with this account has admin permissions.
+1. [`webfactory/ssh-agent`](https://github.com/webfactory/ssh-agent), to allow access to other repositories' opta configuration files. Note that you only need to use this if you have opta.yml files in other repos.
+2. [`aws-actions/configure-aws-credentials`](https://github.com/aws-actions/configure-aws-credentials), to allow push and deploy to AWS. Make sure that the API key associated with this account has admin permissions.
 
 ```yml
 # You only need to include this step if you have opta files outside of this repo
