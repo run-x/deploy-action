@@ -10,6 +10,9 @@ inputs:
   tag:
     description: 'The tag associated with this image. Defaults to the tag on the "image" input field'
     required: false
+  apply:
+    description: 'Set this to some value if you wish to do opta apply instead of opta deploy (i.e. for environment yamls or if you are handling docker push outside of opta).'
+    required: false
   config:
     description: 'The location of the opta config file. Defaults to "opta.yml" in the root dir'
     required: false
@@ -26,7 +29,9 @@ runs:
       run: |
         VERSION=$VERSION /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
 
-        if [ -z "$TAG" ]; then
+        if [ -z "$APPLY" ]; then
+          ~/.opta/opta apply --env $OPTA_ENV --config $CONFIG --auto-approve
+        elif [ -z "$TAG" ]; then
           ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --auto-approve
         else
           ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --tag $TAG --auto-approve
@@ -34,6 +39,6 @@ runs:
       env:
         OPTA_ENV: ${{ inputs.env }}
         IMAGE: ${{ inputs.image }}
-        TAG: ${{ inputs.tag }}
+        APPLY: ${{ inputs.apply }}
         CONFIG: ${{ inputs.config }}
         VERSION: ${{ inputs.version }}
