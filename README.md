@@ -1,6 +1,6 @@
-## RunX Deploy
+## Opta Deploy
 
-Deploy your docker container using runx.
+Deploy your docker container using opta.
 
 **Table of Contents**
 
