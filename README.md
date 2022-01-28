@@ -17,7 +17,7 @@ Add the following step to your workflow:
 
 ```yaml
 - name: Update deployment
-  uses: run-x/deploy-action@v0.24
+  uses: run-x/deploy-action@v0.25
   with:
     env: runx-staging
     image: app:latest
