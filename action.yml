@@ -3,7 +3,7 @@ description: "Magical Infrastructure and Deploys"
 inputs:
   image:
     description: "The local image being deployed, provided in the form <IMAGE_NAME>:<IMAGE_TAG>"
-    required: true
+    required: false
   env:
     description: "The name of your environment as defined in your runx config files"
     required: true
