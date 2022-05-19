@@ -29,7 +29,7 @@ runs:
       run: |
         VERSION=$VERSION /bin/bash -c "$(curl -fsSL https://docs.runx.dev/install.sh)"
 
-        if [ -z "$APPLY" ]; then
+        if [ ! -z "$APPLY" ]; then
           ~/.opta/opta apply --env $OPTA_ENV --config $CONFIG --auto-approve
         elif [ -z "$TAG" ]; then
           ~/.opta/opta deploy --image $IMAGE --env $OPTA_ENV --config $CONFIG --auto-approve
