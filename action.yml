@@ -27,7 +27,7 @@ runs:
     - name: Update deployment
       shell: bash
       run: |
-        VERSION=$VERSION /bin/bash -c "$(curl -fsSL https://run-x.github.io/install.sh)"
+        VERSION=$VERSION /bin/bash -c "$(curl -fsSL https://docs.opta.dev/install.sh)"
 
         if [ -z "$APPLY" ]; then
           ~/.opta/opta apply --env $OPTA_ENV --config $CONFIG --auto-approve
